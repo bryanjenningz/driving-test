@@ -10,7 +10,7 @@ scenarios =
     [ Scenario
         (Directions (Just 1) (Just 0) (Just 1) (Just 1))
         "Which car has the right of way?"
-        [ "The top car", "The bottom car" ]
+        [ "The top car", "The bottom car", "The left car", "The right car", "All cars should yield and be careful" ]
         1
     ]
 
@@ -60,8 +60,10 @@ view model =
                 div []
                     [ div [ class "roads" ]
                         [ viewRoads, viewCars scenario.directions ]
-                    , viewQuestion scenario.question
-                    , viewAnswers scenario.answers
+                    , div [ class "question-answers" ]
+                        [ viewQuestion scenario.question
+                        , viewAnswers scenario.answers
+                        ]
                     ]
 
             Nothing ->
@@ -105,17 +107,17 @@ viewCar direction maybeDelay =
 
 viewQuestion : String -> Html msg
 viewQuestion question =
-    div [ class "question" ] [ text question ]
+    h3 [ class "text-center" ] [ text question ]
 
 
 viewAnswers : List String -> Html Msg
 viewAnswers answers =
-    div [] (List.indexedMap viewAnswer answers)
+    div [ class "text-center" ] (List.indexedMap viewAnswer answers)
 
 
 viewAnswer : Int -> String -> Html Msg
 viewAnswer index answer =
-    div [ onClick (ChooseAnswer index) ] [ text answer ]
+    button [ class "btn btn-primary btn-block", onClick (ChooseAnswer index) ] [ text answer ]
 
 
 viewResults : Model -> Html Msg
@@ -134,9 +136,10 @@ viewResults model =
         totalCount =
             List.length model.answerIndexes
     in
-        div []
-            [ text ("Your score is: " ++ toString correctCount ++ " / " ++ toString totalCount)
-            , div [] [ button [ onClick RetakeTest ] [ text "Retake Test" ] ]
+        div [ class "mt-4" ]
+            [ h2 [ class "text-center" ]
+                [ text ("Your score is: " ++ toString correctCount ++ " / " ++ toString totalCount) ]
+            , button [ class "btn btn-success btn-lg d-block mx-auto", onClick RetakeTest ] [ text "Retake Test" ]
             ]
 
 
