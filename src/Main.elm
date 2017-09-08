@@ -5,9 +5,18 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 
 
+scenarios : List Scenario
+scenarios =
+    [ Scenario
+        (Directions (Just 1) (Just 0) Nothing Nothing)
+        "Which car has the right of way?"
+        [ "The top car", "The bottom car" ]
+        1
+    ]
+
+
 type alias Model =
-    { scenarios : List Scenario
-    , scenarioIndex : Int
+    { scenarioIndex : Int
     , answerIndexes : List Int
     }
 
@@ -35,14 +44,14 @@ type Msg
 
 init : ( Model, Cmd Msg )
 init =
-    ( Model [] 0 [], Cmd.none )
+    ( Model 0 [], Cmd.none )
 
 
 view : Model -> Html Msg
 view model =
     let
         maybeScenario =
-            model.scenarios
+            scenarios
                 |> List.drop model.scenarioIndex
                 |> List.head
     in
@@ -112,12 +121,16 @@ viewAnswer index answer =
 viewResults : Model -> Html Msg
 viewResults model =
     let
+        correctCount : Int
         correctCount =
             List.map2
                 (==)
                 model.answerIndexes
-                (List.map .correctIndex model.scenarios)
+                (List.map .correctIndex scenarios)
+                |> List.filter identity
+                |> List.length
 
+        totalCount : Int
         totalCount =
             List.length model.answerIndexes
     in
