@@ -47,3 +47,38 @@ body {
   right: 40%;
   background-color: black;
 }
+
+.car {
+  position: absolute;
+  background-color: red;
+}
+
+.car.up, .car.down {
+  width: 10%;
+  height: 20%;
+}
+
+.car.up {
+  top: 0;
+  left: 40%;
+}
+
+.car.down {
+  top: 80%;
+  left: 50%;
+}
+
+.car.left, .car.right {
+  width: 20%;
+  height: 10%;
+}
+
+.car.left {
+  top: 50%;
+  left: 0;
+}
+
+.car.right {
+  top: 40%;
+  left: 80%;
+}

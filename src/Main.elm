@@ -8,7 +8,7 @@ import Html.Events exposing (..)
 scenarios : List Scenario
 scenarios =
     [ Scenario
-        (Directions (Just 1) (Just 0) Nothing Nothing)
+        (Directions (Just 1) (Just 0) (Just 1) (Just 1))
         "Which car has the right of way?"
         [ "The top car", "The bottom car" ]
         1
@@ -58,8 +58,8 @@ view model =
         case maybeScenario of
             Just scenario ->
                 div []
-                    [ viewRoads
-                    , viewCars scenario.directions
+                    [ div [ class "roads" ]
+                        [ viewRoads, viewCars scenario.directions ]
                     , viewQuestion scenario.question
                     , viewAnswers scenario.answers
                     ]
@@ -70,7 +70,7 @@ view model =
 
 viewRoads : Html msg
 viewRoads =
-    div [ class "roads" ]
+    div []
         [ div [ class "x-road" ] []
         , div [ class "x-road-lines" ] []
         , div [ class "y-road" ] []
