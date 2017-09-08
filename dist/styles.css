@@ -48,9 +48,46 @@ body {
   background-color: black;
 }
 
+@keyframes car-up {
+  from {
+    top: 0;
+  }
+  to {
+    top: 20%;
+  }
+}
+
+@keyframes car-down {
+  from {
+    top: 80%;
+  }
+  to {
+    top: 60%;
+  }
+}
+
+@keyframes car-left {
+  from {
+    left: 0;
+  }
+  to {
+    left: 20%;
+  }
+}
+
+@keyframes car-right {
+  from {
+    left: 80%;
+  }
+  to {
+    left: 60%;
+  }
+}
+
 .car {
   position: absolute;
   background-color: red;
+  animation-duration: 2s;
 }
 
 .car.up, .car.down {
@@ -59,13 +96,15 @@ body {
 }
 
 .car.up {
-  top: 0;
+  top: 20%;
   left: 40%;
+  animation-name: car-up;
 }
 
 .car.down {
-  top: 80%;
+  top: 60%;
   left: 50%;
+  animation-name: car-down;
 }
 
 .car.left, .car.right {
@@ -75,10 +114,12 @@ body {
 
 .car.left {
   top: 50%;
-  left: 0;
+  left: 20%;
+  animation-name: car-left;
 }
 
 .car.right {
   top: 40%;
-  left: 80%;
+  left: 60%;
+  animation-name: car-right;
 }
