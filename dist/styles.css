@@ -1,0 +1,49 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.roads {
+  position: relative;
+  width: 50vw;
+  height: 50vw;
+  background: #1d751d; /* green */
+  margin: 20px auto;
+}
+
+.x-road, .x-road-lines {
+  position: absolute;
+  top: 40%;
+  bottom: 40%;
+  left: 0;
+  right: 0;
+  background-color: black;
+}
+
+.x-road-lines {
+  top: 50%;
+  border-top: 4px dashed yellow;
+}
+
+.y-road, .y-road-lines {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 40%;
+  right: 40%;
+  background-color: black;
+}
+
+.y-road-lines {
+  left: 50%;
+  border-left: 4px dashed yellow;
+}
+
+.intersection {
+  position: absolute;
+  top: 40%;
+  bottom: 40%;
+  left: 40%;
+  right: 40%;
+  background-color: black;
+}
