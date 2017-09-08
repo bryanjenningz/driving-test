@@ -55,19 +55,21 @@ view model =
                 |> List.drop model.scenarioIndex
                 |> List.head
     in
-        case maybeScenario of
-            Just scenario ->
-                div []
-                    [ div [ class "roads" ]
-                        [ viewRoads, viewCars scenario.directions ]
-                    , div [ class "question-answers" ]
-                        [ viewQuestion scenario.question
-                        , viewAnswers scenario.answers
+        div [ class "container" ]
+            [ case maybeScenario of
+                Just scenario ->
+                    div []
+                        [ div [ class "roads" ]
+                            [ viewRoads, viewCars scenario.directions ]
+                        , div [ class "question-answers" ]
+                            [ viewQuestion scenario.question
+                            , viewAnswers scenario.answers
+                            ]
                         ]
-                    ]
 
-            Nothing ->
-                viewResults model
+                Nothing ->
+                    viewResults model
+            ]
 
 
 viewRoads : Html msg
@@ -117,7 +119,9 @@ viewAnswers answers =
 
 viewAnswer : Int -> String -> Html Msg
 viewAnswer index answer =
-    button [ class "btn btn-primary btn-block", onClick (ChooseAnswer index) ] [ text answer ]
+    button
+        [ class "btn btn-primary btn-block", onClick (ChooseAnswer index) ]
+        [ text answer ]
 
 
 viewResults : Model -> Html Msg
@@ -139,7 +143,9 @@ viewResults model =
         div [ class "mt-4" ]
             [ h2 [ class "text-center" ]
                 [ text ("Your score is: " ++ toString correctCount ++ " / " ++ toString totalCount) ]
-            , button [ class "btn btn-success btn-lg d-block mx-auto", onClick RetakeTest ] [ text "Retake Test" ]
+            , button
+                [ class "btn btn-success btn-lg d-block mx-auto", onClick RetakeTest ]
+                [ text "Retake Test" ]
             ]
 
 
